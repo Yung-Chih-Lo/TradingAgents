@@ -27,6 +27,9 @@ from .setup import GraphSetup
 from .propagation import Propagator
 from .reflection import Reflector
 from .signal_processing import SignalProcessor
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 class TradingAgentsGraph:

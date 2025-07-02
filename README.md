@@ -25,7 +25,40 @@
 
 ---
 
-# TradingAgents: Multi-Agents LLM Financial Trading Framework 
+# TradingAgents: Multi-Agents LLM Financial Trading Framework
+
+> **📝 Enhanced Fork**
+> 
+> This is an enhanced version of the original [TauricResearch/TradingAgents](https://github.com/TauricResearch/TradingAgents) project with additional improvements:
+> 
+> * 🐳 **Docker Support**: Added comprehensive Docker containerization for easy deployment and consistent environments
+> * 🔒 **Secure Environment Management**: Implemented secure handling of API keys using Docker's `--env-file` option
+> * 📦 **Simplified Deployment**: One-command deployment with Docker, eliminating dependency management issues
+> * 🚀 **Production Ready**: Containerized setup suitable for both development and production environments
+> * 🛡️ **Security Best Practices**: Environment variables are injected at runtime, keeping sensitive data out of Docker images
+> 
+> ## Quick Start with Docker
+> 
+> 1. **Create environment file**:
+>    Duplicate the .env.example file. Rename the copy to .env. Open the new .env file and insert your API key in the > >   > 
+> appropriate field.
+>    
+> 
+> 2. **Build and run**:
+>    ```bash
+>    # Build the Docker image
+>    docker build -t trading-app .
+>    
+>    # Run with environment file (secure method)
+>    docker run --rm -it --env-file ./.env trading-app python -m cli.main
+>    ```
+> 
+> 
+> **Required APIs**: Get your free API keys at [finnhub.io](https://finnhub.io) and [OpenAI](https://platform.openai.com/api-keys)
+> 
+> All original functionality and licensing terms remain unchanged. These enhancements focus on improving deployment experience and security practices.
+
+---
 
 > 🎉 **TradingAgents** officially released! We have received numerous inquiries about the work, and we would like to express our thanks for the enthusiasm in our community.
 >
