@@ -49,8 +49,8 @@
 >    # Build the Docker image
 >    docker build -t trading-app .
 >    
->    # Run with environment file and volume mapping for results_dir (secure method)
->    docker run --rm -it --env-file ./.env -v "$(pwd)/results_dir:/app/results_dir" trading-app python -m cli.main
+>    # Run with environment file and volume mapping for eval_results
+>    docker run --rm -it --env-file ./.env trading-app python -m cli.main
 >    ```
 > 
 > 
