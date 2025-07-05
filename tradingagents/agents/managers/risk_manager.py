@@ -22,26 +22,26 @@ def create_risk_manager(llm, memory):
         for i, rec in enumerate(past_memories, 1):
             past_memory_str += rec["recommendation"] + "\n\n"
 
-        prompt = f"""As the Risk Management Judge and Debate Facilitator, your goal is to evaluate the debate between three risk analysts—Risky, Neutral, and Safe/Conservative—and determine the best course of action for the trader. Your decision must result in a clear recommendation: Buy, Sell, or Hold. Choose Hold only if strongly justified by specific arguments, not as a fallback when all sides seem valid. Strive for clarity and decisiveness.
+        prompt = f"""您是一位風險管理法官和辯論主持人，您的目標是評估三個風險分析師—風險、中性、保守—之間的辯論，並確定交易者的最佳行動方案。您的決定必須產生明確的建議：買、賣或持有。只有在強烈基於特定論據時才選擇持有，而不是作為所有方面似乎有效的後備。力求清晰和果斷。
 
-Guidelines for Decision-Making:
-1. **Summarize Key Arguments**: Extract the strongest points from each analyst, focusing on relevance to the context.
-2. **Provide Rationale**: Support your recommendation with direct quotes and counterarguments from the debate.
-3. **Refine the Trader's Plan**: Start with the trader's original plan, **{trader_plan}**, and adjust it based on the analysts' insights.
-4. **Learn from Past Mistakes**: Use lessons from **{past_memory_str}** to address prior misjudgments and improve the decision you are making now to make sure you don't make a wrong BUY/SELL/HOLD call that loses money.
+決策指南：
+1. **總結關鍵論點**：從每個分析師中提取最強的觀點，重點關注與上下文的相關性。
+2. **提供理由**：使用辯論中的直接引述和反對意見來支持您的建議。
+3. **完善交易者的計劃**：從交易者的原始計劃 **{trader_plan}** 開始，並根據分析師的見解進行調整。
+4. **從過去的錯誤中學習**：使用 **{past_memory_str}** 中的教訓來解決先前的誤判，並改進您現在的決策，以確保您不會做出錯誤的買/賣/持有決定，從而導致虧損。
 
-Deliverables:
-- A clear and actionable recommendation: Buy, Sell, or Hold.
-- Detailed reasoning anchored in the debate and past reflections.
+交付成果：
+- 明確且可操作的建議：買、賣或持有。
+- 基於辯論和過去反思的詳細推理。
 
 ---
 
-**Analysts Debate History:**  
+**分析師辯論歷史：**
 {history}
 
 ---
 
-Focus on actionable insights and continuous improvement. Build on past lessons, critically evaluate all perspectives, and ensure each decision advances better outcomes."""
+專注於可操作的見解和持續改進。從過去的教訓中構建，批判性地評估所有觀點，並確保每個決定都推動更好的結果。"""
 
         response = llm.invoke(prompt)
 

@@ -55,7 +55,7 @@ def get_finnhub_news(
             )
             combined_result += current_news + "\n\n"
 
-    return f"## {ticker} News, from {before} to {curr_date}:\n" + str(combined_result)
+    return f"## {ticker} 新聞, from {before} to {curr_date}:\n" + str(combined_result)
 
 
 def get_finnhub_company_insider_sentiment(
@@ -93,9 +93,9 @@ def get_finnhub_company_insider_sentiment(
                 seen_dicts.append(entry)
 
     return (
-        f"## {ticker} Insider Sentiment Data for {before} to {curr_date}:\n"
+        f"## {ticker} 內部人士情緒資料 from {before} to {curr_date}:\n"
         + result_str
-        + "The change field refers to the net buying/selling from all insiders' transactions. The mspr field refers to monthly share purchase ratio."
+        + "change 欄位指的是所有內部人士交易淨買賣。mspr 欄位指的是每月購買股權比例。"
     )
 
 
@@ -135,9 +135,9 @@ def get_finnhub_company_insider_transactions(
                 seen_dicts.append(entry)
 
     return (
-        f"## {ticker} insider transactions from {before} to {curr_date}:\n"
+        f"## {ticker} 內部人士交易 from {before} to {curr_date}:\n"
         + result_str
-        + "The change field reflects the variation in share count—here a negative number indicates a reduction in holdings—while share specifies the total number of shares involved. The transactionPrice denotes the per-share price at which the trade was executed, and transactionDate marks when the transaction occurred. The name field identifies the insider making the trade, and transactionCode (e.g., S for sale) clarifies the nature of the transaction. FilingDate records when the transaction was officially reported, and the unique id links to the specific SEC filing, as indicated by the source. Additionally, the symbol ties the transaction to a particular company, isDerivative flags whether the trade involves derivative securities, and currency notes the currency context of the transaction."
+        + "change 欄位反映持股數量的變化——負數表示持股減少，而 share 指定涉及的總股數。transactionPrice 表示交易執行的每股價格，而 transactionDate 標記交易發生的時間。name 欄位識別進行交易的內部人士，而 transactionCode（例如 S 表示銷售）說明交易的性質。FilingDate 記錄交易正式報告的日期，而 unique id 鏈接到特定的 SEC 報告，由源頭指示。此外，symbol 將交易與特定公司聯繫起來，isDerivative 標記交易是否涉及衍生證券，而 currency 註明交易的貨幣背景。"
     )
 
 
@@ -184,7 +184,7 @@ def get_simfin_balance_sheet(
     return (
         f"## {freq} balance sheet for {ticker} released on {str(latest_balance_sheet['Publish Date'])[0:10]}: \n"
         + str(latest_balance_sheet)
-        + "\n\nThis includes metadata like reporting dates and currency, share details, and a breakdown of assets, liabilities, and equity. Assets are grouped as current (liquid items like cash and receivables) and noncurrent (long-term investments and property). Liabilities are split between short-term obligations and long-term debts, while equity reflects shareholder funds such as paid-in capital and retained earnings. Together, these components ensure that total assets equal the sum of liabilities and equity."
+        + "\n\n這包括報告日期和貨幣等元資料，以及對公司資產、負債和股東權益的全面分析。資產分為流動（現金和應收款）和非流動（長期投資和財產），負債分為短期和長期債務，而股東權益反映股東資金，包括已付資本和保留盈餘。這些組成部分確保總資產等於負債和股東權益的總和。"
     )
 
 
@@ -229,9 +229,9 @@ def get_simfin_cashflow(
     latest_cash_flow = latest_cash_flow.drop("SimFinId")
 
     return (
-        f"## {freq} cash flow statement for {ticker} released on {str(latest_cash_flow['Publish Date'])[0:10]}: \n"
+        f"## {freq} 現金流量表 for {ticker} released on {str(latest_cash_flow['Publish Date'])[0:10]}: \n"
         + str(latest_cash_flow)
-        + "\n\nThis includes metadata like reporting dates and currency, share details, and a breakdown of cash movements. Operating activities show cash generated from core business operations, including net income adjustments for non-cash items and working capital changes. Investing activities cover asset acquisitions/disposals and investments. Financing activities include debt transactions, equity issuances/repurchases, and dividend payments. The net change in cash represents the overall increase or decrease in the company's cash position during the reporting period."
+        + "\n\n這包括報告日期和貨幣等元資料，以及對公司現金流動的全面分析。營運活動顯示來自核心業務運營的現金，包括非現金項目的淨收入調整和營運資本變化。投資活動涵蓋資產收購/處置和投資。融資活動包括債務交易、股權發行/回購和股息支付。現金淨變化代表公司在報告期間現金位置的整體增加或減少。"
     )
 
 
@@ -278,7 +278,7 @@ def get_simfin_income_statements(
     return (
         f"## {freq} income statement for {ticker} released on {str(latest_income['Publish Date'])[0:10]}: \n"
         + str(latest_income)
-        + "\n\nThis includes metadata like reporting dates and currency, share details, and a comprehensive breakdown of the company's financial performance. Starting with Revenue, it shows Cost of Revenue and resulting Gross Profit. Operating Expenses are detailed, including SG&A, R&D, and Depreciation. The statement then shows Operating Income, followed by non-operating items and Interest Expense, leading to Pretax Income. After accounting for Income Tax and any Extraordinary items, it concludes with Net Income, representing the company's bottom-line profit or loss for the period."
+        + "\n\n這包括報告日期和貨幣等元資料，以及對公司財務績效的全面分析。從收入開始，顯示銷售成本和相應的毛利。營運費用詳細列出，包括 SG&A、R&D 和折舊。然後顯示營業收入，接著是非營業項目和利息支出，最後是預扣稅和任何非常項目，最後得出淨收入，代表公司該期間的底線利潤或虧損。"
     )
 
 
@@ -620,7 +620,7 @@ def get_YFin_data_window(
         df_string = filtered_data.to_string()
 
     return (
-        f"## Raw Market Data for {symbol} from {start_date} to {curr_date}:\n\n"
+        f"## 原始市場資料 for {symbol} from {start_date} to {curr_date}:\n\n"
         + df_string
     )
 
@@ -660,9 +660,9 @@ def get_YFin_data_online(
     csv_string = data.to_csv()
 
     # Add header information
-    header = f"# Stock data for {symbol.upper()} from {start_date} to {end_date}\n"
-    header += f"# Total records: {len(data)}\n"
-    header += f"# Data retrieved on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n"
+    header = f"# 股票資料 for {symbol.upper()} from {start_date} to {end_date}\n"
+    header += f"# 總記錄數: {len(data)}\n"
+    header += f"# 資料獲取日期: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n"
 
     return header + csv_string
 
@@ -714,7 +714,7 @@ def get_stock_news_openai(ticker, curr_date):
                 "content": [
                     {
                         "type": "input_text",
-                        "text": f"Can you search Social Media for {ticker} from 7 days before {curr_date} to {curr_date}? Make sure you only get the data posted during that period.",
+                        "text": f"你能搜尋社交媒體上關於 {ticker} 的討論，從 {curr_date} 前一個月到 {curr_date} 當月期間，對交易有幫助的討論嗎？請確保只獲取該期間內發布的數據。",
                     }
                 ],
             }
@@ -749,7 +749,7 @@ def get_global_news_openai(curr_date):
                 "content": [
                     {
                         "type": "input_text",
-                        "text": f"Can you search global or macroeconomics news from 7 days before {curr_date} to {curr_date} that would be informative for trading purposes? Make sure you only get the data posted during that period.",
+                        "text": f"你能搜尋全球或宏觀經濟新聞，從 {curr_date} 前一個月到 {curr_date} 當月期間，對交易有幫助的新聞嗎？請確保只獲取該期間內發布的數據。",
                     }
                 ],
             }
@@ -784,7 +784,7 @@ def get_fundamentals_openai(ticker, curr_date):
                 "content": [
                     {
                         "type": "input_text",
-                        "text": f"Can you search Fundamental for discussions on {ticker} during of the month before {curr_date} to the month of {curr_date}. Make sure you only get the data posted during that period. List as a table, with PE/PS/Cash flow/ etc",
+                        "text": f"你能搜尋關於 {ticker} 在 {curr_date} 前一個月到 {curr_date} 當月期間的基本面討論嗎？請確保只獲取該期間內發布的數據。請以表格形式列出，包含本益比/市銷率/現金流等指標",
                     }
                 ],
             }

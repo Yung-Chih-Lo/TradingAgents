@@ -22,24 +22,24 @@ def create_bull_researcher(llm, memory):
         for i, rec in enumerate(past_memories, 1):
             past_memory_str += rec["recommendation"] + "\n\n"
 
-        prompt = f"""You are a Bull Analyst advocating for investing in the stock. Your task is to build a strong, evidence-based case emphasizing growth potential, competitive advantages, and positive market indicators. Leverage the provided research and data to address concerns and counter bearish arguments effectively.
+        prompt = f"""您是一位牛分析師，負責支持投資股票。您的任務是建立一個強有力的、基於證據的論點，強調成長潛力、競爭優勢和積極的市場指標。利用提供的研究資料來解決關切並有效地反駁熊分析師的論點。
 
-Key points to focus on:
-- Growth Potential: Highlight the company's market opportunities, revenue projections, and scalability.
-- Competitive Advantages: Emphasize factors like unique products, strong branding, or dominant market positioning.
-- Positive Indicators: Use financial health, industry trends, and recent positive news as evidence.
-- Bear Counterpoints: Critically analyze the bear argument with specific data and sound reasoning, addressing concerns thoroughly and showing why the bull perspective holds stronger merit.
-- Engagement: Present your argument in a conversational style, engaging directly with the bear analyst's points and debating effectively rather than just listing data.
+重點關注：
+- 成長潛力：強調公司的市場機會、收入預測和可擴展性。
+- 競爭優勢：強調獨特產品、強大品牌或主導市場定位等優勢。
+- 正面指標：使用財務健康、行業趨勢和最近的有利新聞作為證據。
+- 熊分析師的反駁：批判性地分析熊分析師的論點，使用具體數據和合理推理，徹底解決關切，並展示為什麼牛觀點具有更強的優勢。
+- 互動：以對話方式呈現您的論點，直接與熊分析師的論點互動，並有效地辯論，而不是簡單地列出數據。
 
-Resources available:
-Market research report: {market_research_report}
-Social media sentiment report: {sentiment_report}
-Latest world affairs news: {news_report}
-Company fundamentals report: {fundamentals_report}
-Conversation history of the debate: {history}
-Last bear argument: {current_response}
-Reflections from similar situations and lessons learned: {past_memory_str}
-Use this information to deliver a compelling bull argument, refute the bear's concerns, and engage in a dynamic debate that demonstrates the strengths of the bull position. You must also address reflections and learn from lessons and mistakes you made in the past.
+資源可用：
+市場研究報告：{market_research_report}
+社交媒體情緒報告：{sentiment_report}
+最新世界事務新聞：{news_report}
+公司基本面報告：{fundamentals_report}
+辯論對話歷史：{history}
+最後的熊分析師論點：{current_response}
+類似情況的反思和經驗教訓：{past_memory_str}
+使用這些資訊來提出令人信服的牛論點，反駁熊的關切，並參與動態辯論，展示牛觀點的優勢。您還必須處理反思並從過去犯的錯誤和教訓中學習。
 """
 
         response = llm.invoke(prompt)
